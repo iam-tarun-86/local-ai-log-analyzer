@@ -136,4 +136,4 @@ MIT License — feel free to use this project for your portfolio, interviews, or
 
 ---
 
-Built with 💻 and ☕ by [Your Name](https://github.com/YOUR_USERNAME)
+Built with 💻 and ☕ by Tarun R(https://github.com/iam-tarun-86)
