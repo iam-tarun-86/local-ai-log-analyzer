@@ -7,7 +7,7 @@ import requests
 app = Flask(__name__)
 CORS(app)
 
-LLAMA_URL = "http://localhost:8080/v1/chat/completions"
+LLAMA_URL = "http://localhost:8085/v1/chat/completions"
 MODEL = "gemma-4-e4b"
 
 SYSTEM = """You are a SIEM analyzer. Output ONLY raw valid JSON. No thinking, no explanations, no markdown. JSON: {"threat_detected":boolean,"severity":"High"|"Medium"|"Low","threat_type":string|null,"affected_ip":string|null,"timestamp":string|null,"mitigation":string,"confidence":"High"|"Medium"|"Low"}"""
