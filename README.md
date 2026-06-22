@@ -20,7 +20,7 @@ A high-performance, full-stack SIEM (Security Information and Event Management) 
 ## 🔧 Installation & Local Environment Setup
 
 ### 1. Prerequisites & AI Layer
-Ensure your dockerized `llama-server` or local binary instance is active on port `8080` exposing standard OpenAI-compatible `/v1/chat/completions` endpoints. 
+Ensure your dockerized `llama-server` or local binary instance is active on port `8085` exposing standard OpenAI-compatible `/v1/chat/completions` endpoints. 
 
 ### 2. Backend Orchestration Setup
 Navigate to the backend microservice workspace, initialize an isolated runtime tracking environment, and deploy the service:
