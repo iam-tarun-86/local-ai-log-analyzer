@@ -174,7 +174,7 @@ curl -X POST http://localhost:5000/api/analyze-agent \
 Update `MODEL` in `backend/agent.py` or `backend/app.py` to use a different model:
 
 ```python
-MODEL = "your-model-name"
+MODEL = "gemma-4-e4b-q5 guff"
 ```
 
 ---
@@ -191,4 +191,4 @@ MIT License — feel free to use this project for your portfolio, interviews, or
 
 ---
 
-Built with 💻 and ☕ by [Your Name](https://github.com/YOUR_USERNAME)
+Built with 💻 and ☕ by TARUN R(https://github.com/iam-tarun-86)
