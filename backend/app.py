@@ -2,6 +2,7 @@ import json
 import re
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from agent import analyze_with_agent
 import requests
 #import
 app = Flask(__name__)
@@ -107,6 +108,22 @@ def upload():
             })
             
     return jsonify({"count": len(results), "results": results})
+    
+@app.route('/api/analyze-agent', methods=['POST'])
+def analyze_agent():
+    log = request.json.get('log', '')
+    if not log:
+        return jsonify({"error": "No log provided"}), 400
+    
+    try:
+        result = analyze_with_agent(log)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({
+            "error": str(e),
+            "agent_decision": "FAILED",
+            "action_taken": "Agent pipeline encountered an error. Falling back to standard analysis."
+        }), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

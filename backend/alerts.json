@@ -1,0 +1,30 @@
+[
+  {
+    "time": null,
+    "severity": "High",
+    "threat": "Brute Force",
+    "ip": "10.0.0.99",
+    "mitigation": "Temporarily block IP 10.0.0.99 at firewall level and trigger MFA challenge for root user."
+  },
+  {
+    "time": null,
+    "severity": "High",
+    "threat": "Brute Force",
+    "ip": "10.0.0.99",
+    "mitigation": "Temporarily block IP 10.0.0.99 at firewall level and trigger MFA challenge for root user."
+  },
+  {
+    "time": null,
+    "severity": "High",
+    "threat": "Brute Force Attack",
+    "ip": "10.0.0.99",
+    "mitigation": "Temporarily block IP 10.0.0.99 at firewall level and trigger MFA challenge for root user."
+  },
+  {
+    "time": null,
+    "severity": "High",
+    "threat": "Brute Force",
+    "ip": "10.0.0.99",
+    "mitigation": "Temporarily block IP 10.0.0.99 at firewall/ACL level for 1 hour."
+  }
+]

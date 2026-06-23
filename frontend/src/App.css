@@ -881,4 +881,97 @@ button:disabled {
   .stats-grid {
     grid-template-columns: 1fr;
   }
+
+}
+
+/* ===== TOGGLE SWITCH ===== */
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.app.dark .toggle-switch {
+  background: rgba(37, 99, 235, 0.1);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+}
+
+.app.dark .toggle-switch:hover {
+  background: rgba(37, 99, 235, 0.2);
+}
+
+.app.light .toggle-switch {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+
+.toggle-switch input[type="checkbox"] {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background: #374151;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.toggle-switch input[type="checkbox"]::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+.toggle-switch input[type="checkbox"]:checked {
+  background: #2563eb;
+}
+
+.toggle-switch input[type="checkbox"]:checked::after {
+  transform: translateX(20px);
+}
+
+.toggle-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.app.dark .toggle-label {
+  color: #e0e6ed;
+}
+
+.app.light .toggle-label {
+  color: #1e293b;
+}
+/* ===== CLEAR BUTTON ===== */
+.history-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.clear-btn {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 68, 68, 0.2);
+  color: #ff4444;
+  border: 1px solid rgba(255, 68, 68, 0.4);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+}
+
+.clear-btn:hover {
+  background: rgba(255, 68, 68, 0.3);
 }

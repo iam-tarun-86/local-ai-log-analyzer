@@ -205,13 +205,21 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [darkMode, setDarkMode] = useState(true)
   const [dragActive, setDragActive] = useState(false)
+  const [agentMode, setAgentMode] = useState(false)
 
   const analyzeText = async () => {
     if (!log.trim()) return
     setLoading(true)
     setResults([])
+
+    // Pre-load audio context on user click (required by browsers)
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)()
+    audioCtx.resume()
+
+    const endpoint = agentMode ? 'http://localhost:5000/api/analyze-agent' : 'http://localhost:5000/api/analyze'
+
     try {
-      const res = await fetch('http://localhost:5000/api/analyze', {
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ log })
@@ -219,6 +227,23 @@ function App() {
       const data = await res.json()
       setResults([data])
       addToHistory(data, log)
+
+      // Play sound if escalated
+      if (data.agent_decision === "ESCALATED") {
+        const audio = new Audio('/alert.mp3')
+        audio.play().catch(() => {
+          // Fallback: synthetic beep
+          const osc = audioCtx.createOscillator()
+          const gain = audioCtx.createGain()
+          osc.connect(gain)
+          gain.connect(audioCtx.destination)
+          osc.frequency.value = 800
+          osc.type = 'square'
+          gain.gain.value = 0.3
+          osc.start()
+          setTimeout(() => osc.stop(), 300)
+        })
+      }
     } catch (err) {
       setResults([{ error: err.message }])
     }
@@ -342,8 +367,16 @@ function App() {
             />
             <div className="button-row">
               <button onClick={analyzeText} disabled={loading}>
-                <Send size={16} /> {loading ? 'Scanning...' : 'Analyze Text'}
+                <Send size={16} /> {loading ? 'Scanning...' : (agentMode ? 'Agent Analyze' : 'Analyze Text')}
               </button>
+              <label className="toggle-switch">
+                <input
+                  type="checkbox"
+                  checked={agentMode}
+                  onChange={(e) => setAgentMode(e.target.checked)}
+                />
+                <span className="toggle-label">{agentMode ? '🤖 Agent Mode' : '⚡ Simple Mode'}</span>
+              </label>
             </div>
 
             <div
@@ -448,7 +481,12 @@ function App() {
 
   const renderHistory = () => (
     <div className="history-page">
-      <h2>Scan History</h2>
+      <div className="history-header-row">
+        <h2>Scan History</h2>
+        <button className="clear-btn" onClick={() => setHistory([])}>
+          Clear History
+        </button>
+      </div>
       <div className="history-table">
         <div className="history-header">
           <span>Time</span>
